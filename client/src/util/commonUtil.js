@@ -1,4 +1,4 @@
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import Constants from "../lib/constants";
 import CookieUtil from "./cookieUtil";
 
@@ -30,7 +30,7 @@ const getTimeFromDate = (date) => {
 const getUserId = () => {
   let token = CookieUtil.getCookie(Constants.ACCESS_PROPERTY);
   if (token) {
-    let decodedToken = jwt_decode(token);
+    let decodedToken = jwtDecode(token); // Updated here
     return decodedToken.userId;
   }
   return "";
