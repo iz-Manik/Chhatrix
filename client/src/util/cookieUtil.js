@@ -32,4 +32,4 @@ const setCookie = (cookieName, cookieValue, expairydays = 30) => {
     deleteCookie: deleteCookie,
   };
 
-  export default CookieUtil;
+export default CookieUtil;

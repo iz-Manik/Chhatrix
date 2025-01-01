@@ -29,4 +29,4 @@ const HomeScreen = (props) => {
   );
 };
 
-export default AuthRequired(HomeScreen);
+export default HomeScreen;

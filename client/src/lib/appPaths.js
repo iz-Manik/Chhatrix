@@ -3,8 +3,8 @@ const AppPaths = {
     CHAT_ROOM: "/c/:chatId",
     LOGIN: "/login",
     SIGN_UP: "/signup",
-    PROFILE: "/profile",
-    NOT_FOUND: "/404",
+    // PROFILE: "/profile",
+    // NOT_FOUND: "/404",
 };
 
 export default AppPaths;
