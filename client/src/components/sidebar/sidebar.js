@@ -26,18 +26,33 @@ const Sidebar = (props) => {
   };
 
   const fetchChatUser = async () => {
-    const url = ApiEndpoints.USER_CHAT_URL.replace(
-      Constants.USER_ID_PLACE_HOLDER,
-      CommonUtil.getUserId()
-    );
-    const chatUsers = await ApiConnector.sendGetRequest(url);
-    const formatedChatUser = CommonUtil.getFormatedChatUser(
-      chatUsers,
-      props.onlineUserList
-    );
-    setChatUsers(formatedChatUser);
-    redirectUserToDefaultChatRoom(formatedChatUser);
+    try {
+      const url = ApiEndpoints.USER_CHAT_URL.replace(
+        Constants.USER_ID_PLACE_HOLDER,
+        CommonUtil.getUserId()
+      );
+
+      const chatUsers = await ApiConnector.sendGetRequest(url);
+
+      console.log("Fetched chatUsers:", chatUsers); // Debug log to check API response
+
+      // Ensure chatUsers is an array
+      const safeChatUsers = Array.isArray(chatUsers) ? chatUsers : [];
+
+      // Safely format chat users
+      const formatedChatUser = CommonUtil.getFormatedChatUser(
+        safeChatUsers,
+        props.onlineUserList
+      );
+
+      setChatUsers(formatedChatUser);
+
+      redirectUserToDefaultChatRoom(formatedChatUser);
+    } catch (error) {
+      console.error("Error fetching chat users:", error);
+    }
   };
+
 
   useEffect(() => {
     fetchChatUser();
